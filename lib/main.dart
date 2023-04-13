@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/firebase_options.dart';
+import 'package:uesb_eventos/src/controllers/providerEvento.controller.dart';
+
+import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/pages/auth.check.dart';
-import 'package:uesb_eventos/src/services/auth.service.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,7 @@ void main() async{
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => ProviderEvento()),
       ],
       child: MyApp(),
     ),
@@ -31,8 +34,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
+
       ),
       home: AuthCheck(),
     );
   }
 }
+

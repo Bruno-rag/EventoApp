@@ -1,39 +1,39 @@
-class Eventos{
-
+class Evento{
+  final String idEvento;
   String nomeEvento;
   final String inicioEvento;
   final String terminoEvento;
   final String urlAvatar;
   final String detalheEvento;
-  final String atividaEvento;
+  final String idOrganizador;
 
-  Eventos({
-
+  Evento({
+    required this.idEvento,
     required this.nomeEvento,
     required this.inicioEvento,
     required this.terminoEvento,
     required this.urlAvatar,
     required this.detalheEvento,
-    required this.atividaEvento,
+    required this.idOrganizador,
   });
 
   Map<String, dynamic> toJson() => {
-
+    'idEvento': idEvento,
     'nomeEvento': nomeEvento,
     'inicioEvento': inicioEvento,
     'terminoEvento': terminoEvento ,
     'urlAvatar': urlAvatar,
     'detalheEvento': detalheEvento,
-    'atividaEvento': atividaEvento,
+    'idOrganizador': idOrganizador,
   };
 
-  static Eventos fromJson(Map<String, dynamic> json) => Eventos(
-      nomeEvento: json['nomeEvento'],
-      inicioEvento: json['inicioEvento'],
-      terminoEvento: json['terminoEvento'] ,
-      urlAvatar: json['urlAvatar'],
-      detalheEvento: json['detalheEvento'],
-      atividaEvento: json['atividaEvento'],
-
+  static Evento lerFireBase(Map<String, dynamic> json) => Evento(
+    idEvento: json['idEvento'],
+    nomeEvento: json['nomeEvento'],
+    inicioEvento: json['inicioEvento'],
+    terminoEvento: json['terminoEvento'] ,
+    urlAvatar: json['urlAvatar'],
+    detalheEvento: json['detalheEvento'],
+    idOrganizador: json['idOrganizador'],
   );
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/models/usuario.model.dart';
 import 'package:uesb_eventos/src/pages/login.page.dart';
-import '../services/auth.service.dart';
+import '../controllers/auth.service.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _PerfilPageState extends State<PerfilPage> {
     final snapshot = await docUser.get();
 
     if (snapshot.exists){
-      return Usuario.fromJson(snapshot.data()!);
+      return Usuario.lerFireBase(snapshot.data()!);
     }
   }
   @override

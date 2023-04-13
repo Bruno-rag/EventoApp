@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/pages/home.page.dart';
 import 'package:uesb_eventos/src/pages/recuperar.page.dart';
 
-import '../services/auth.service.dart';
+import '../controllers/auth.service.dart';
 
 
 

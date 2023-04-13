@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/models/eventos.model.dart';
 import 'package:uesb_eventos/src/pages/descricao.page.dart';
-import 'package:uesb_eventos/src/services/auth.service.dart';
+import 'package:uesb_eventos/src/controllers/auth.service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
             ),
             Expanded(
-                  child: StreamBuilder<List<Eventos>>(
+                  child: StreamBuilder<List<Evento>>(
                     stream: readUsers(),
                     builder: (context, snapshot){
                       if(snapshot.hasError){
@@ -74,13 +74,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Stream<List<Eventos>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Evento>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Eventos.fromJson(doc.data())).toList());
+      snapshot.docs.map((doc)=> Evento.lerFireBase(doc.data())).toList());
 
-  Widget buildUser(Eventos evento) {
+  Widget buildUser(Evento evento) {
     return Card(
       child: ListTile(
         onTap: () {

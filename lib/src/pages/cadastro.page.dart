@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/pages/appbar.page.dart';
 import 'package:uesb_eventos/src/pages/auth.check.dart';
 import 'package:uesb_eventos/src/pages/login.page.dart';
-import '../services/auth.service.dart';
+import '../controllers/auth.service.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:uesb_eventos/src/pages/evento.page.dart';
+import 'package:provider/provider.dart';
+import 'package:uesb_eventos/src/controllers/auth.service.dart';
+import 'package:uesb_eventos/src/pages/evento/gerente/criarEvento.page.dart';
 import 'package:uesb_eventos/src/pages/historico.page.dart';
-import 'package:uesb_eventos/src/pages/gerenciarPresenca.dart';
 import 'package:uesb_eventos/src/pages/home.page.dart';
-import 'package:uesb_eventos/src/pages/homologarInscricao.dart';
-import 'package:uesb_eventos/src/pages/perfil.page.dart';
+import 'package:uesb_eventos/src/pages/perfilPackage/perfil.page.dart';
+import 'package:uesb_eventos/src/pages/widget/nomeSobremeUsuario.widget.dart';
 import 'package:uesb_eventos/src/pages/validar.page.dart';
+import 'evento/gerente/listaEventosGerenciados.page.dart';
+import 'evento/inscrito/listaEventosInscritos.page.dart';
 
 class AppBarPage extends StatefulWidget {
   const AppBarPage({Key? key}) : super(key: key);
@@ -13,10 +16,14 @@ class AppBarPage extends StatefulWidget {
   @override
   State<AppBarPage> createState() => _AppBarPageState();
 }
-
 class _AppBarPageState extends State<AppBarPage> {
+  late AuthService auth;
+
+
   @override
   Widget build(BuildContext context) {
+    auth = Provider.of<AuthService>(context);
+    Color color =Colors.pink;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -24,55 +31,104 @@ class _AppBarPageState extends State<AppBarPage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              Container(
-                padding: EdgeInsets.only(
-                   top: 80,
-                  left: 10,
-                ),
-                child: IconButton(
-                  alignment: Alignment.centerLeft,
-
-                  onPressed: (){
-                    Navigator.of(context).push<int>(
-                        MaterialPageRoute(builder: (_) => PerfilPage()));
-                  },
-                  icon: Row(
+              InkWell(
+                onTap: (){
+                  setState(() {
+                    color = Colors.red;
+                  });
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PerfilPage() ));
+                },
+                child: Container(
+                  color: Colors.pink,
+                  padding: EdgeInsets.only(
+                      top: 40,
+                      bottom: 20
+                  ),
+                  child: Column(
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage("assets/perfil.png"),
 
+                      SizedBox(
+                        height: 10,
                       ),
-                      Text("Perfil"),
+                      NomeSobrenomeUserWidget(),
+
+                      // IconButton(
+                      //   alignment: Alignment.centerLeft,
+                      //
+                      //   onPressed: (){
+                      //     Navigator.of(context).push<int>(
+                      //         MaterialPageRoute(builder: (_) => PerfilPage()));
+                      //   },
+                      //   icon: Row(
+                      //     children: [
+                      //       Container(
+                      //
+                      //         child: CircleAvatar(
+                      //           backgroundImage: AssetImage("assets/perfil.png"),
+                      //
+                      //         ),
+                      //       ),
+                      //       Text("Perfil"),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
               ),
-              Divider(),
+
               ListTile(
-                title: const Text('Homologar Inscrição'),
+                leading: Icon(
+                    Icons.perm_identity,
+                    color: Colors.black54
+                ),
+                title: const Text('Gerenciar Eventos'),
+                trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54
+                ),
+
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push<int>(
-                      MaterialPageRoute(builder: (_) => HomologarInscricao()));
+                      MaterialPageRoute(builder: (_) => ListaEventosGerenciadosPage()));
                 },
               ),
               ListTile(
-                title: const Text('Gerenciar Presença'),
+                leading: Icon(
+                    Icons.event,
+                    color: Colors.black54
+                ),
+                title: const Text('Eventos Incristos'),
+                trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push<int>(
-                      MaterialPageRoute(builder: (_) => GerenciarPresenca()));
+                      MaterialPageRoute(builder: (_) => ListaEventosInscritosPage()));
                 },
               ),
+
               ListTile(
-                title: const Text('Histórico de Eventos'),
+                leading: Icon(
+                    Icons.history,
+                    color: Colors.black54
+                ),
+                title: const Text('Historico de eventos'),
+                trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54
+                ),
+
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push<int>(
                       MaterialPageRoute(builder: (_) => EventosParticipei()));
                 },
               ),
-
             ],
           ),
         ),
@@ -93,7 +149,7 @@ class _AppBarPageState extends State<AppBarPage> {
         body: TabBarView(
           children: [
             HomePage(),
-            EventoPage(),
+            CriarEventoPage(),
             ValidarPage(),
           ],
         ),

@@ -43,12 +43,39 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  trocarSenha( String newPassword) async {
+    try {
+      await usuario?.updatePassword(newPassword);
+      _getUser();
+      AuthService();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == '...') {
+        throw AuthException('...');
+      } else if (e.code == '...') {
+        throw AuthException('...');
+      }
+    }
+  }
+  trocarEmail( String newEmail) async {
+    try {
+      await usuario?.updateEmail(newEmail);
+      _getUser();
+      AuthService();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == '...') {
+        throw AuthException('...');
+      } else if (e.code == '...') {
+        throw AuthException('...');
+      }
+    }
+  }
+
   login(String email, String senha) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: senha);
       _getUser();
       AuthService();
-  } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw AuthException('Email não encontrado. Cadastre-se.');
       } else if (e.code == 'wrong-password') {
@@ -62,6 +89,8 @@ class AuthService extends ChangeNotifier {
     _getUser();
     notifyListeners();
   }
+
+
 
 
 }
