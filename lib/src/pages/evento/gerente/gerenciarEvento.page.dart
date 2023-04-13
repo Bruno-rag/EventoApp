@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/editar/editarDadosEvento.page.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/gerenciarPresenca.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/homologarInscricao.dart';
-import '../../../models/eventos.model.dart';
+import '../../../models/evento.model.dart';
+import 'gerenciarAtividade.page.dart';
 
 class GerenciarEventoPage extends StatefulWidget {
   final Evento? evento;
@@ -260,6 +261,70 @@ class _GerenciarEventoPageState extends State<GerenciarEventoPage> {
                     onPressed: () {
                       // Navigator.of(context).pop();
                        Navigator.of(context).push<int>(MaterialPageRoute(builder: (_) => HomologarInscricao(idEvento: widget.evento!.idEvento,)));
+                    },
+                  ),
+                ),
+
+                Divider(),
+                /*
+                  // Botão Atividade
+                */
+                Container(
+                  padding: EdgeInsets.only(
+                    top: 0,
+                    left: 10,
+                    right: 10,
+                  ),
+                  height: 60,
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children:  [
+                        Icon(
+                            Icons.star,
+                            size: 30,
+                            color: Colors.black54
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Gerência de atividade",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                    color: Colors.black87
+                                ),
+                              ),
+                              Text(
+                                "Criar ou remover as atividades",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                    color: Colors.black54
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 25,
+                            color: Colors.black54
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      // Navigator.of(context).pop();
+                      Navigator.of(context).push<int>(MaterialPageRoute(builder: (_) => GerenciarAtividadePage(idEvento: widget.evento!.idEvento,)));
                     },
                   ),
                 ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/pages/appbar.page.dart';
 import 'package:uesb_eventos/src/pages/auth.check.dart';
-import 'package:uesb_eventos/src/pages/login.page.dart';
-import '../controllers/auth.service.dart';
+import 'package:uesb_eventos/src/pages/acessoApp/login.page.dart';
+import '../../controllers/auth.service.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});

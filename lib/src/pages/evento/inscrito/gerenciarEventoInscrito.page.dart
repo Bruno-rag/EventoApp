@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uesb_eventos/src/pages/crachaVirtual.page.dart';
+import 'package:uesb_eventos/src/pages/evento/inscrito/crachaVirtual.page.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/editar/editarDadosEvento.page.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/gerenciarPresenca.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/homologarInscricao.dart';
-import '../../../models/eventos.model.dart';
+import 'package:uesb_eventos/src/pages/evento/inscrito/listaAtividadeParaInscritos.page.dart';
+import '../../../models/evento.model.dart';
 
 class GerenciarEventoInscritoPage extends StatefulWidget {
   final Evento? evento;
@@ -196,7 +197,7 @@ class _GerenciarEventoInscritoPageState extends State<GerenciarEventoInscritoPag
                     ),
                     onPressed: () {
                       // Navigator.of(context).pop();
-                       //Navigator.of(context).push<int>(MaterialPageRoute(builder: (_) => HomologarInscricao(idEvento: widget.evento!.idEvento,)));
+                       Navigator.of(context).push<int>(MaterialPageRoute(builder: (_) => ListaAtividadePage(idEvento: widget.evento!.idEvento,)));
                     },
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/models/eventos.model.dart';
+import 'package:uesb_eventos/src/models/evento.model.dart';
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/pages/evento/inscrito/gerenciarEventoInscrito.page.dart';
 

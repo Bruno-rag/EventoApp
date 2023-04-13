@@ -37,13 +37,13 @@ class _ListaInscritosWidgetState extends State<ListaInscritosWidget> {
   /*
     leitura do eventos
    */
-  Stream<List<Usuario>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .doc("4eGInWR30DBdL0FA0KOS")
       .collection("inscritos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Usuario.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _ListaInscritosWidgetState extends State<ListaInscritosWidget> {
           ),
 
           Expanded(
-              child: StreamBuilder<List<Usuario>>(
+              child: StreamBuilder<List<Atividade>>(
                 stream: readUsers(),
                 builder: (context, snapshot){
                   if(snapshot.hasError){
@@ -112,7 +112,7 @@ class _ListaInscritosWidgetState extends State<ListaInscritosWidget> {
 
   }
 
-  Widget buildUser(Usuario usuario) {
+  Widget buildUser(Atividade usuario) {
     return Column(
       children: [
         Card(

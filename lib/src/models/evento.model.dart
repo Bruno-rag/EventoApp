@@ -17,7 +17,7 @@ class Evento{
     required this.idOrganizador,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> adicionarFirebase() => {
     'idEvento': idEvento,
     'nomeEvento': nomeEvento,
     'inicioEvento': inicioEvento,

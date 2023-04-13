@@ -21,13 +21,13 @@ class _HomologarInscricaoState extends State<HomologarInscricao> {
   /*
     leitura do eventos
    */
-  Stream<List<Usuario>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .doc(widget.idEvento)
       .collection("homologados")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Usuario.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _HomologarInscricaoState extends State<HomologarInscricao> {
 
             ),
             Expanded(
-                child: StreamBuilder<List<Usuario>>(
+                child: StreamBuilder<List<Atividade>>(
                   stream: readUsers(),
                   builder: (context, snapshot){
                     if(snapshot.hasError){
@@ -106,7 +106,7 @@ class _HomologarInscricaoState extends State<HomologarInscricao> {
 
 
 
-  Widget buildUser(Usuario usuario) {
+  Widget buildUser(Atividade usuario) {
     return Card(
       child: ListTile(
         onTap: () {

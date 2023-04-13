@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/firebase_options.dart';
+import 'package:uesb_eventos/src/controllers/providerAtividade.controller.dart';
 import 'package:uesb_eventos/src/controllers/providerEvento.controller.dart';
-
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/pages/auth.check.dart';
 
@@ -17,6 +17,7 @@ void main() async{
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
         ChangeNotifierProvider(create: (context) => ProviderEvento()),
+        ChangeNotifierProvider(create: (context) => ProviderAtividade()),
       ],
       child: MyApp(),
     ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
-import 'package:uesb_eventos/src/models/eventos.model.dart';
+import 'package:uesb_eventos/src/models/evento.model.dart';
 
 class MudarDataEvento extends StatefulWidget {
   final Evento? evento;

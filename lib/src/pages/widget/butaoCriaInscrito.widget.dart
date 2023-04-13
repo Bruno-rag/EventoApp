@@ -22,15 +22,15 @@ class _BotaoEnviaDadosUserWidgetState extends State<BotaoEnviaDadosUserWidget> {
   late AuthService auth;
   late String idUsario = auth.usuario!.uid;
 
-  Future<Usuario?> readUser() async{
+  Future<Atividade?> readUser() async{
 
     final docUser = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
     final snapshot = await docUser.get();
 
     if (snapshot.exists){
-      Usuario ex = Usuario.lerFireBase(snapshot.data()!);
+      Atividade ex = Atividade.lerFireBase(snapshot.data()!);
 
-      return Usuario.lerFireBase(snapshot.data()!);
+      return Atividade.lerFireBase(snapshot.data()!);
     }
   }
 
@@ -55,7 +55,7 @@ class _BotaoEnviaDadosUserWidgetState extends State<BotaoEnviaDadosUserWidget> {
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
     return Center(
-      child: FutureBuilder<Usuario?>(
+      child: FutureBuilder<Atividade?>(
           future: readUser(),
           builder: (context, snapshot){
             if(snapshot.hasError){
@@ -72,7 +72,7 @@ class _BotaoEnviaDadosUserWidgetState extends State<BotaoEnviaDadosUserWidget> {
       ),
     );
   }
-  Widget buildUser(Usuario usuario) {
+  Widget buildUser(Atividade usuario) {
     return Container(
       alignment: Alignment.center,
       color: Colors.black87,

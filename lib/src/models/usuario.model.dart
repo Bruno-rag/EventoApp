@@ -1,4 +1,4 @@
-class Usuario{
+class Atividade{
   final String idUsuario;
   String nome;
   final String sobrenome;
@@ -7,7 +7,7 @@ class Usuario{
   final String dataNas;
   final String email;
 
-  Usuario({
+  Atividade({
     required this.idUsuario,
     required this.nome,
     required this.sobrenome,
@@ -28,7 +28,7 @@ class Usuario{
   };
 
 
-  static Usuario lerFireBase(Map<String, dynamic> json) => Usuario(
+  static Atividade lerFireBase(Map<String, dynamic> json) => Atividade(
     idUsuario: json['idUsuario'],
     nome: json['nome'],
     sobrenome: json['sobrenome'],

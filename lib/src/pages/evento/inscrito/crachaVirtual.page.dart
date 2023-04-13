@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controllers/auth.service.dart';
+import '../../../controllers/auth.service.dart';
 
 class CrachaVirtualPage extends StatefulWidget {
 

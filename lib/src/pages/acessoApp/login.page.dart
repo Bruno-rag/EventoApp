@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/pages/home.page.dart';
-import 'package:uesb_eventos/src/pages/recuperar.page.dart';
+import 'package:uesb_eventos/src/pages/acessoApp/recuperar.page.dart';
 
-import '../controllers/auth.service.dart';
+import '../../controllers/auth.service.dart';
 
 
 

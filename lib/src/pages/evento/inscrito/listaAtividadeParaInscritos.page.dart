@@ -2,28 +2,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
-import 'package:uesb_eventos/src/pages/evento/gerente/descricaoHomologar.dart';
+import 'package:uesb_eventos/src/controllers/providerAtividade.controller.dart';
+import 'package:uesb_eventos/src/pages/evento/gerente/criarAtividade.page.dart';
 
-import '../../../models/usuario.model.dart';
 
-class GerenciarPresenca extends StatefulWidget {
+import '../../../models/atividade.model.dart';
+
+
+
+class ListaAtividadePage extends StatefulWidget {
   final String idEvento;
-  const GerenciarPresenca({Key? key, required this.idEvento}) : super(key: key);
+  const ListaAtividadePage({Key? key, required this.idEvento}) : super(key: key);
 
   @override
-  State<GerenciarPresenca> createState() => _GerenciarPresencaState();
+  State<ListaAtividadePage> createState() => _ListaAtividadePageState();
 }
 
-class _GerenciarPresencaState extends State<GerenciarPresenca> {
+class _ListaAtividadePageState extends State<ListaAtividadePage> {
   late AuthService auth;
-
+  late ProviderAtividade pvdAtividade;
   /*
     leitura do eventos
    */
-  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Atividade>> readAtividade() => FirebaseFirestore.instance
       .collection("eventos")
       .doc(widget.idEvento)
-      .collection("inscritos")
+      .collection("atividade")
       .snapshots()
       .map((snapshot) =>
       snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
@@ -31,6 +35,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
   @override
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
+    pvdAtividade = Provider.of<ProviderAtividade>(context);
 
     return Scaffold(
       appBar:
@@ -41,13 +46,12 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
           top: 40,
           left: 10,
           right: 10,
-          bottom: 80,
+          bottom: 30,
         ),
         child: Column(
-
           children: [
             Text(
-              "Inscritos",
+              "Lista de Atividades",
               textAlign: TextAlign.center,
               style: TextStyle(
 
@@ -63,7 +67,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
             ),
             Expanded(
                 child: StreamBuilder<List<Atividade>>(
-                  stream: readUsers(),
+                  stream: readAtividade(),
                   builder: (context, snapshot){
                     if(snapshot.hasError){
                       return Text("Error: ${snapshot.error}");
@@ -79,7 +83,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
                       return Container(
                         padding: EdgeInsets.only(top: 100),
                         child: Text(
-                          "Sem inscritos",
+                          "Sem Atividades",
                           style: TextStyle(
                             color: Colors.black54,
                             fontWeight: FontWeight.bold,
@@ -102,38 +106,43 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
 
 
 
-  Widget buildUser(Atividade usuario) {
+  Widget buildUser(Atividade atividade) {
     return Card(
       child: ListTile(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => DescricaoHomologar(usuario: usuario)
-          ));
+          // Navigator.of(context).push(MaterialPageRoute(
+          //     builder: (context) => DescricaoHomologar(usuario: usuario)
+          // ));
         },
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(usuario.urlAvatar),
+        leading: Icon(
+          Icons.add_task_rounded,
+          color: Colors.black87,
         ),
         title: Text(
-          usuario.nome,
+          atividade.nome ,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
-          usuario.email,
+          atividade.data,
           style: TextStyle(
-            color: Colors.deepPurple,
+            color: Colors.black54,
             fontWeight: FontWeight.bold,
 
           ),
         ),
         // trailing:  IconButton(
         //     onPressed: () {
-        //       //removeItem(item);
+        //       pvdAtividade.deletaAtividade(atividade.idAtividade,"atividade", widget.idEvento);
         //     },
-        //     icon: Icon(Icons.delete)
+        //     icon: Icon(
+        //       Icons.delete_forever,
+        //       color: Colors.red,
+        //     )
         // ),
+
       ),
     );
   }

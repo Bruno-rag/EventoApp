@@ -15,13 +15,13 @@ class _NomeSobrenomeUserWidgetState extends State<NomeSobrenomeUserWidget> {
 
   late AuthService auth;
 
-  Future<Usuario?> readUser() async{
+  Future<Atividade?> readUser() async{
 
     final docUser = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
     final snapshot = await docUser.get();
 
     if (snapshot.exists){
-      return Usuario.lerFireBase(snapshot.data()!);
+      return Atividade.lerFireBase(snapshot.data()!);
     }
   }
 
@@ -29,7 +29,7 @@ class _NomeSobrenomeUserWidgetState extends State<NomeSobrenomeUserWidget> {
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
     return Center(
-      child: FutureBuilder<Usuario?>(
+      child: FutureBuilder<Atividade?>(
           future: readUser(),
           builder: (context, snapshot){
             if(snapshot.hasError){
@@ -46,7 +46,7 @@ class _NomeSobrenomeUserWidgetState extends State<NomeSobrenomeUserWidget> {
       ),
     );
   }
-  Widget buildUser(Usuario usuario) {
+  Widget buildUser(Atividade usuario) {
     return Column(
       children: [
         CircleAvatar(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/models/eventos.model.dart';
+import 'package:uesb_eventos/src/models/evento.model.dart';
 import 'package:uesb_eventos/src/pages/widget/butaoEnviaDadosHomologado.widget.dart';
 import '../controllers/auth.service.dart';
 

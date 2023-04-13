@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/models/eventos.model.dart';
+import 'package:uesb_eventos/src/models/evento.model.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/editar/mudarDetalheEvento.page.dart';
 import 'package:uesb_eventos/src/pages/perfilPackage/mudarEmail.page.dart';
 import 'package:uesb_eventos/src/pages/perfilPackage/mudarFone.page.dart';
