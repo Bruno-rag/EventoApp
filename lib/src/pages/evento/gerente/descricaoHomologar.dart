@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../models/usuario.model.dart';
 
 class DescricaoHomologar extends StatefulWidget {
-  final Atividade? usuario;
+  final Usuario? usuario;
   const DescricaoHomologar({
     Key? key, this.usuario,
 

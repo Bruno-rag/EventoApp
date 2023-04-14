@@ -5,7 +5,6 @@ import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/controllers/providerAtividade.controller.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/criarAtividade.page.dart';
 
-
 import '../../../models/atividade.model.dart';
 
 

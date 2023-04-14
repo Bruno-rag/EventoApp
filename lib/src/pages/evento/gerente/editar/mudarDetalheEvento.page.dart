@@ -5,7 +5,7 @@ import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/models/evento.model.dart';
 
 class MudarDetalheEvento extends StatefulWidget {
-  final Evento? evento;
+  final Atividade? evento;
   const MudarDetalheEvento({Key? key, this.evento}) : super(key: key);
 
   @override

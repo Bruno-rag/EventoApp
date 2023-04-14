@@ -7,7 +7,7 @@ import 'package:uesb_eventos/src/pages/evento/inscrito/listaAtividadeParaInscrit
 import '../../../models/evento.model.dart';
 
 class GerenciarEventoInscritoPage extends StatefulWidget {
-  final Evento? evento;
+  final Atividade? evento;
   const GerenciarEventoInscritoPage({Key? key, this.evento}) : super(key: key);
 
   @override
@@ -323,7 +323,7 @@ class _GerenciarEventoInscritoPageState extends State<GerenciarEventoInscritoPag
                     ),
                     onPressed: () {
                       // Navigator.of(context).pop();
-                      Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => CrachaVirtualPage()));
+                      Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => CrachaVirtualPage(nome: widget.evento!.nomeEvento,)));
                     },
                   ),
                 ),

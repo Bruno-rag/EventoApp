@@ -20,13 +20,13 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
   /*
     leitura do eventos
    */
-  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Usuario>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .doc(widget.idEvento)
       .collection("inscritos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Usuario.lerFireBase(doc.data())).toList());
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
 
             ),
             Expanded(
-                child: StreamBuilder<List<Atividade>>(
+                child: StreamBuilder<List<Usuario>>(
                   stream: readUsers(),
                   builder: (context, snapshot){
                     if(snapshot.hasError){
@@ -102,7 +102,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
 
 
 
-  Widget buildUser(Atividade usuario) {
+  Widget buildUser(Usuario usuario) {
     return Card(
       child: ListTile(
         onTap: () {

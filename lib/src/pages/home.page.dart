@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
             ),
             Expanded(
-                  child: StreamBuilder<List<Evento>>(
+                  child: StreamBuilder<List<Atividade>>(
                     stream: readUsers(),
                     builder: (context, snapshot){
                       if(snapshot.hasError){
@@ -74,13 +74,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Stream<List<Evento>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Evento.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
 
-  Widget buildUser(Evento evento) {
+  Widget buildUser(Atividade evento) {
     return Card(
       child: ListTile(
         onTap: () {

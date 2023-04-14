@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/models/evento.model.dart';
-import 'package:uesb_eventos/src/pages/widget/butaoEnviaDadosHomologado.widget.dart';
-import '../controllers/auth.service.dart';
+import '../../../controllers/auth.service.dart';
+import '../../../models/atividade.model.dart';
 
-class DescricaoPage extends StatefulWidget {
-  final Atividade? evento;
-  const DescricaoPage({
-    Key? key, this.evento,
+class DescricaoAtividadePage extends StatefulWidget {
+  final Atividade? atividade;
+  const DescricaoAtividadePage({
+    Key? key, this.atividade,
   }) : super(key: key);
 
   @override
-  State<DescricaoPage> createState() => _DescricaoPageState();
+  State<DescricaoAtividadePage> createState() => _DescricaoAtividadePageState();
 }
 
-class _DescricaoPageState extends State<DescricaoPage> {
+class _DescricaoAtividadePageState extends State<DescricaoAtividadePage> {
   late AuthService auth;
   late String idUsario = auth.usuario!.uid;
 
@@ -52,15 +51,15 @@ class _DescricaoPageState extends State<DescricaoPage> {
 
       ),
       body: Container(
+
         padding: EdgeInsets.all(20),
         child: ListView(
-          //crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             //imagem hamburger
             Container(
-
               width: MediaQuery.of(context).size.width,
-              child: Image.network(widget.evento!.urlAvatar),
+              child: Image.network("https://media.istockphoto.com/id/1385168396/pt/foto/people-registering-for-the-conference-event.jpg?s=612x612&w=0&k=20&c=UkdhV6KD1JC43SyAKWWh4z4El3HE_wdBjUKdlIZKsFk="),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
 
@@ -70,7 +69,7 @@ class _DescricaoPageState extends State<DescricaoPage> {
               height: 8,
             ),
             Text(
-              "Nome do evento: "+widget.evento!.nomeEvento,
+              "Nome da Atividade: "+widget.atividade!.nome,
               style: TextStyle(
                 fontSize:20,
                 fontWeight: FontWeight.w400,
@@ -81,29 +80,19 @@ class _DescricaoPageState extends State<DescricaoPage> {
               height: 8,
             ),
             Text(
-              "Início: "+widget.evento!.inicioEvento,
+              "Data: "+ widget.atividade!.data,
               style: TextStyle(
                 fontSize:20,
                 fontWeight: FontWeight.w400,
               ),
             ),
+
             Divider(),
             SizedBox(
               height: 8,
             ),
             Text(
-              "Término: "+ widget.evento!.terminoEvento,
-              style: TextStyle(
-                fontSize:20,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Divider(),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              "Descrição do evento: "+widget.evento!.detalheEvento,
+              "Descrição da atividade: "+widget.atividade!.descricao,
               style: TextStyle(
                 fontSize:20,
                 fontWeight: FontWeight.w400,
@@ -111,29 +100,34 @@ class _DescricaoPageState extends State<DescricaoPage> {
             ),
 
             SizedBox(
-              height: 8,
+              height: 30,
             ),
 
-            BotaoEnviaDadosHomologadoWidget(idEvento: widget.evento!.idEvento, collection: "homologados"),
-            // Container(
-            //   alignment: Alignment.center,
-            //
-            //   child: ElevatedButton(
-            //     onPressed: (){
-            //       criarInscrito(widget.evento!.idEvento);
-            //       Navigator.of(context).pop();
-            //       //testeInscrito();
-            //       Navigator.of(context).push<int>(MaterialPageRoute(builder: (_) => EventosInscritos()));
-            //     },
-            //     child: Text(
-            //       "Inscrever",
-            //       style: TextStyle(
-            //         fontSize: 15,
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Container(
+              alignment: Alignment.center,
+              color: Colors.black87,
+              child: TextButton(
+                onPressed: (){
+
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(
+                            "inscrição bem-sucedida"
+                        ),
+                      )
+                  );
+                },
+                child: Text(
+
+                  "Inscreva-se na atividade",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

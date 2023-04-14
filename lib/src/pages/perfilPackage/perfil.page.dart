@@ -38,13 +38,13 @@ class _PerfilPageState extends State<PerfilPage> {
     }
   }
 
-  Future<Atividade?> readUser() async{
+  Future<Usuario?> readUser() async{
 
     final docUser = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
     final snapshot = await docUser.get();
 
     if (snapshot.exists){
-      return Atividade.lerFireBase(snapshot.data()!);
+      return Usuario.lerFireBase(snapshot.data()!);
     }
   }
 
@@ -93,7 +93,7 @@ class _PerfilPageState extends State<PerfilPage> {
 
           Column(
             children: [
-              FutureBuilder<Atividade?>(
+              FutureBuilder<Usuario?>(
                 future: readUser(),
                 builder: (context, snapshot){
                   if(snapshot.hasError){
@@ -130,7 +130,7 @@ class _PerfilPageState extends State<PerfilPage> {
       ),
     );
   }
-  Widget buildUser(Atividade usuario) {
+  Widget buildUser(Usuario usuario) {
     return Column(
       children: [
         SizedBox(

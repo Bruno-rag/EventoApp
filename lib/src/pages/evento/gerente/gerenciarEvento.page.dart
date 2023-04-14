@@ -6,7 +6,7 @@ import '../../../models/evento.model.dart';
 import 'gerenciarAtividade.page.dart';
 
 class GerenciarEventoPage extends StatefulWidget {
-  final Evento? evento;
+  final Atividade? evento;
   const GerenciarEventoPage({Key? key, this.evento}) : super(key: key);
 
   @override

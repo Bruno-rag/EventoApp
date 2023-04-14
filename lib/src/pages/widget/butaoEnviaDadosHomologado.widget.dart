@@ -22,13 +22,13 @@ class _BotaoEnviaDadosHomologadoWidgetState extends State<BotaoEnviaDadosHomolog
   late AuthService auth;
   late String idUsario = auth.usuario!.uid;
 
-  Future<Atividade?> readUser() async{
+  Future<Usuario?> readUser() async{
 
     final docUser = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
     final snapshot = await docUser.get();
 
     if (snapshot.exists){
-      return Atividade.lerFireBase(snapshot.data()!);
+      return Usuario.lerFireBase(snapshot.data()!);
     }
   }
 
@@ -51,7 +51,7 @@ class _BotaoEnviaDadosHomologadoWidgetState extends State<BotaoEnviaDadosHomolog
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
     return Center(
-      child: FutureBuilder<Atividade?>(
+      child: FutureBuilder<Usuario?>(
           future: readUser(),
           builder: (context, snapshot){
             if(snapshot.hasError){
@@ -68,7 +68,7 @@ class _BotaoEnviaDadosHomologadoWidgetState extends State<BotaoEnviaDadosHomolog
       ),
     );
   }
-  Widget buildUser(Atividade usuario) {
+  Widget buildUser(Usuario usuario) {
     return Container(
       alignment: Alignment.center,
       color: Colors.black87,

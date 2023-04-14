@@ -7,6 +7,7 @@ import 'package:uesb_eventos/src/pages/evento/gerente/criarAtividade.page.dart';
 
 
 import '../../../models/atividade.model.dart';
+import 'descricaoAtividade.dart';
 
 
 
@@ -110,9 +111,9 @@ class _ListaAtividadePageState extends State<ListaAtividadePage> {
     return Card(
       child: ListTile(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //     builder: (context) => DescricaoHomologar(usuario: usuario)
-          // ));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => DescricaoAtividadePage(atividade: atividade)
+          ));
         },
         leading: Icon(
           Icons.add_task_rounded,
