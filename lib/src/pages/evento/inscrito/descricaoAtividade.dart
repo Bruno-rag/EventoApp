@@ -21,21 +21,6 @@ class _DescricaoAtividadePageState extends State<DescricaoAtividadePage> {
     Cria Informação do inscrito
 
    */
-  // Future criarInscrito(String idEvento) async{
-  //
-  //   final data = {
-  //     "idUsuario": idUsario,
-  //     "nome": "teste1",
-  //     "sobrenome": "teste1",
-  //     "fone": "teste1",
-  //     "urlAvatar" : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-  //     "fone": "teste1",
-  //     "dataNas": "teste1",
-  //     "email": "teste1",
-  //   };
-  //   final dataUser = FirebaseFirestore.instance.collection("eventos").
-  //   doc(idEvento).collection("homologados").doc(idUsario).set(data);
-  // }
 
   @override
   Widget build(BuildContext context) {

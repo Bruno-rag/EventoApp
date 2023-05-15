@@ -112,37 +112,6 @@ class _DescricaoHomologarState extends State<DescricaoHomologar> {
             SizedBox(
               height: 8,
             ),
-
-            // Container(
-            //   alignment: Alignment.center,
-            //   child: ElevatedButton(
-            //     onPressed: (){
-            //       Navigator.of(context).pop();
-            //       criarUser();
-            //     },
-            //     child: Text(
-            //       "Aceitar",
-            //       style: TextStyle(
-            //         fontSize: 15,
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // Container(
-            //   alignment: Alignment.center,
-            //   child: ElevatedButton(
-            //     onPressed: (){
-            //     },
-            //     child: Text(
-            //       "Recusar",
-            //       style: TextStyle(
-            //         fontSize: 15,
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

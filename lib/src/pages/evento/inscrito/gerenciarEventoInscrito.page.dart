@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:uesb_eventos/src/pages/evento/inscrito/crachaVirtual.page.dart';
-import 'package:uesb_eventos/src/pages/evento/gerente/editar/editarDadosEvento.page.dart';
-import 'package:uesb_eventos/src/pages/evento/gerente/gerenciarPresenca.dart';
-import 'package:uesb_eventos/src/pages/evento/gerente/homologarInscricao.dart';
 import 'package:uesb_eventos/src/pages/evento/inscrito/listaAtividadeParaInscritos.page.dart';
 import '../../../models/evento.model.dart';
+import '../../pdf.dart';
 
 class GerenciarEventoInscritoPage extends StatefulWidget {
-  final Atividade? evento;
+  final Evento? evento;
   const GerenciarEventoInscritoPage({Key? key, this.evento}) : super(key: key);
 
   @override
@@ -260,7 +259,7 @@ class _GerenciarEventoInscritoPageState extends State<GerenciarEventoInscritoPag
                     ),
                     onPressed: () {
                       // Navigator.of(context).pop();
-                      //Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => GerenciarPresenca(idEvento: widget.evento!.idEvento)));
+                      Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => PdfPage()));
                     },
                   ),
                 ),

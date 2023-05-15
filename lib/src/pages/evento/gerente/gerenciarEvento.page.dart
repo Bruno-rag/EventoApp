@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/editar/editarDadosEvento.page.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/gerenciarPresenca.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/homologarInscricao.dart';
+import 'package:uesb_eventos/src/pages/evento/gerente/notificacao.page.dart';
 import '../../../models/evento.model.dart';
 import 'gerenciarAtividade.page.dart';
 
 class GerenciarEventoPage extends StatefulWidget {
-  final Atividade? evento;
+  final Evento? evento;
   const GerenciarEventoPage({Key? key, this.evento}) : super(key: key);
 
   @override
@@ -388,6 +389,69 @@ class _GerenciarEventoPageState extends State<GerenciarEventoPage> {
                     onPressed: () {
                       // Navigator.of(context).pop();
                       Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => GerenciarPresenca(idEvento: widget.evento!.idEvento)));
+                    },
+                  ),
+                ),
+
+                Divider(),
+
+                //Botão EnviarNotificação
+                Container(
+                  padding: EdgeInsets.only(
+                    top: 0,
+                    left: 10,
+                    right: 10,
+                  ),
+                  height: 60,
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children:  [
+                        Icon(
+                            Icons.notifications_none,
+                            size: 30,
+                            color: Colors.black54
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Enviar Notificação",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                    color: Colors.black87
+                                ),
+                              ),
+                              Text(
+                                "Enviar notificação para os usuários" ,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                    color: Colors.black54
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 25,
+                            color: Colors.black54
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      // Navigator.of(context).pop();
+                      Navigator.of(context).push<int>( MaterialPageRoute(builder: (_) => NotificacaoPage()));
                     },
                   ),
                 ),

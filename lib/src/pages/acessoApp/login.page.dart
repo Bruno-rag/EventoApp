@@ -4,14 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/pages/home.page.dart';
 import 'package:uesb_eventos/src/pages/acessoApp/recuperar.page.dart';
-
 import '../../controllers/auth.service.dart';
-
-
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -25,6 +22,19 @@ class _LoginPageState extends State<LoginPage> {
   final sobrenome = TextEditingController();
   final dataNas= TextEditingController();
   final fone= TextEditingController();
+  final senhaNova= TextEditingController();
+
+  var mascaraData = MaskTextInputFormatter(
+    mask: '##/##/####',
+    filter: {'#': RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
+
+  var mascaraFone = MaskTextInputFormatter(
+    mask: '(##)###-####',
+    filter: {'#': RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   late AuthService auth;
 
@@ -78,12 +88,14 @@ class _LoginPageState extends State<LoginPage> {
   Future createUser() async{
     final db = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
     final data = {
+      "idUsuario": auth.usuario!.uid,
       "nome": nome.text,
       "sobrenome": sobrenome.text,
       "fone": fone.text,
       "urlAvatar" : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
       "fone": fone.text,
       "dataNas": dataNas.text,
+      "email": email.text,
     };
     db.set(data);
   }
@@ -133,8 +145,12 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             controller: nome,
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Nome',
+
+                                labelText: "Nome",
+                                labelStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                )
                             ),
                             keyboardType: TextInputType.text,
                             validator: (value) {
@@ -150,8 +166,11 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             controller: sobrenome,
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Sobrenome',
+                                labelText: "Sobrenome",
+                                labelStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                )
                             ),
                             keyboardType: TextInputType.text,
                             validator: (value) {
@@ -167,8 +186,12 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             controller: fone,
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Telefone',
+
+                                labelText: "Telefone",
+                                labelStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                )
                             ),
                             keyboardType: TextInputType.text,
                             validator: (value) {
@@ -184,8 +207,11 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             controller: dataNas,
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Data de nascimanto',
+                                labelText: "Data de nascimento",
+                                labelStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                )
                             ),
                             keyboardType: TextInputType.text,
                             validator: (value) {
@@ -204,8 +230,11 @@ class _LoginPageState extends State<LoginPage> {
                       child: TextFormField(
                         controller: email,
                         decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
+                            labelText: "E-mail",
+                            labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            )
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
@@ -223,8 +252,11 @@ class _LoginPageState extends State<LoginPage> {
                         controller: senha,
                         obscureText: true,
                         decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Senha',
+                            labelText: "Senha",
+                            labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            )
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -236,6 +268,33 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                     ),
+                    isLogin == false ?
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child: TextFormField(
+                        controller: senhaNova,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        decoration: const InputDecoration(
+                            labelText: "Confimar senha",
+                            labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            )
+                        ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Informe a senha";
+                          }else if (value.length < 6) {
+                            return 'Sua senha deve ter no mínimo 6 caracteres';
+                          }else if(senha.text != senhaNova.text && isLogin == false){
+                            print("teste "+senha.text +" "+ senhaNova.text);
+                            return 'Erro na confirmação de senha';
+                          }
+                          return null;
+                        },
+                      ),
+                    ) : SizedBox(),
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: ElevatedButton(

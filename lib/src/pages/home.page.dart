@@ -7,7 +7,6 @@ import 'package:uesb_eventos/src/controllers/auth.service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -18,10 +17,37 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
-
     return Scaffold(
       appBar:
-      auth.visitante == true ? AppBar() : null,
+      auth.visitante == true ? AppBar(
+        actions: [
+          TextButton(
+
+            child: Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              auth.visitante = false;
+              Navigator.pop(context);
+              // Navigator.of(context).push<int>(MaterialPageRoute(
+              //   builder: (_) => CarrinhoPage(),
+              // ),);
+            },
+          ),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.pinkAccent, Colors.purple],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
+      ) : null,
 
       body: Container(
         padding: EdgeInsets.only(
@@ -49,7 +75,7 @@ class _HomePageState extends State<HomePage> {
 
             ),
             Expanded(
-                  child: StreamBuilder<List<Atividade>>(
+                  child: StreamBuilder<List<Evento>>(
                     stream: readUsers(),
                     builder: (context, snapshot){
                       if(snapshot.hasError){
@@ -65,22 +91,19 @@ class _HomePageState extends State<HomePage> {
                     },
                   )
               ),
-
-
-
           ],
         ),
       ),
     );
   }
 
-  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Evento>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Evento.lerFireBase(doc.data())).toList());
 
-  Widget buildUser(Atividade evento) {
+  Widget buildUser(Evento evento) {
     return Card(
       child: ListTile(
         onTap: () {
@@ -103,7 +126,6 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(
             color: Colors.deepPurple,
             fontWeight: FontWeight.bold,
-
           ),
         ),
         // trailing:  IconButton(

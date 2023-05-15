@@ -124,8 +124,7 @@ class _GerenciarPresencaState extends State<GerenciarPresenca> {
           usuario.email,
           style: TextStyle(
             color: Colors.deepPurple,
-            fontWeight: FontWeight.bold,
-
+            fontWeight: FontWeight.bold
           ),
         ),
         // trailing:  IconButton(

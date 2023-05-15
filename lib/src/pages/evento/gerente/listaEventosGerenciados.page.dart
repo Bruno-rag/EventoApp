@@ -17,11 +17,11 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
   late AuthService auth;
   late String idUser = auth.usuario!.uid;
 
-  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Evento>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Evento.lerFireBase(doc.data())).toList());
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +29,15 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 40,
           left: 10,
           right: 10,
           bottom: 80,
         ),
         child: Column(
-
           children: [
-            Text(
+            const Text(
               "Eventos Gerenciados",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -47,13 +46,13 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
               ),
             ),
 
-            Divider(
+           const Divider(
               color: Colors.black,
               height: 40,
 
             ),
             Expanded(
-                child: StreamBuilder<List<Atividade>>(
+                child: StreamBuilder<List<Evento>>(
                   stream: readUsers(),
                   builder: (context, snapshot){
                     if(snapshot.hasError){
@@ -64,7 +63,7 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
                         children: users.map(buildUser).toList(),
                       );
                     }else{
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -78,7 +77,7 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
     );
   }
 
-  Widget buildUser(Atividade evento) {
+  Widget buildUser(Evento evento) {
     return (idUser == evento.idOrganizador)?Card(
 
       child: ListTile(
@@ -90,17 +89,16 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
         ),
         title: Text(
           evento.nomeEvento,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           evento.inicioEvento,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
-
           ),
         ),
         // trailing:  IconButton(
@@ -111,6 +109,6 @@ class _ListaEventosGerenciadosPageState extends State<ListaEventosGerenciadosPag
         // ),
       )
     ):
-    SizedBox();
+    const SizedBox();
   }
 }

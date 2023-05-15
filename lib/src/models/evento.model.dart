@@ -1,4 +1,4 @@
-class Atividade{
+class Evento{
   final String idEvento;
   String nomeEvento;
   final String inicioEvento;
@@ -7,7 +7,7 @@ class Atividade{
   final String detalheEvento;
   final String idOrganizador;
 
-  Atividade({
+  Evento({
     required this.idEvento,
     required this.nomeEvento,
     required this.inicioEvento,
@@ -27,7 +27,7 @@ class Atividade{
     'idOrganizador': idOrganizador,
   };
 
-  static Atividade lerFireBase(Map<String, dynamic> json) => Atividade(
+  static Evento lerFireBase(Map<String, dynamic> json) => Evento(
     idEvento: json['idEvento'],
     nomeEvento: json['nomeEvento'],
     inicioEvento: json['inicioEvento'],

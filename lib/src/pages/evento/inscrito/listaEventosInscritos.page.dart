@@ -18,11 +18,11 @@ class _ListaEventosInscritosPageState extends State<ListaEventosInscritosPage> {
   late AuthService auth;
   late String idUser = auth.usuario!.uid;
 
-  Stream<List<Atividade>> readUsers() => FirebaseFirestore.instance
+  Stream<List<Evento>> readUsers() => FirebaseFirestore.instance
       .collection("eventos")
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc)=> Atividade.lerFireBase(doc.data())).toList());
+      snapshot.docs.map((doc)=> Evento.lerFireBase(doc.data())).toList());
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _ListaEventosInscritosPageState extends State<ListaEventosInscritosPage> {
 
             ),
             Expanded(
-                child: StreamBuilder<List<Atividade>>(
+                child: StreamBuilder<List<Evento>>(
                   stream: readUsers(),
                   builder: (context, snapshot){
                     if(snapshot.hasError){
@@ -77,7 +77,7 @@ class _ListaEventosInscritosPageState extends State<ListaEventosInscritosPage> {
     );
   }
 
-  Widget buildUser(Atividade evento) {
+  Widget buildUser(Evento evento) {
     return (idUser == evento.idOrganizador)?Card(
 
       child: ListTile(

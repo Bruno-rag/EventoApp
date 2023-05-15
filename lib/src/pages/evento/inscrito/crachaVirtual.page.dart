@@ -2,15 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/models/usuario.model.dart';
-import 'package:uesb_eventos/src/pages/widget/nomeSobremeUsuario.widget.dart';
 import '../../../controllers/auth.service.dart';
 
 class CrachaVirtualPage extends StatefulWidget {
   final String nome;
-  const CrachaVirtualPage({
-    Key? key, required this.nome
-
-  }) : super(key: key);
+  const CrachaVirtualPage({ Key? key, required this.nome }) : super(key: key);
 
   @override
   State<CrachaVirtualPage> createState() => _CrachaVirtualPageState();
@@ -18,8 +14,6 @@ class CrachaVirtualPage extends StatefulWidget {
 
 class _CrachaVirtualPageState extends State<CrachaVirtualPage> {
   late AuthService auth;
-
-
   Future<Usuario?> readUser() async{
 
     final docUser = FirebaseFirestore.instance.collection("usuario/${auth.usuario!.uid}/info").doc("info");
@@ -107,15 +101,12 @@ class _CrachaVirtualPageState extends State<CrachaVirtualPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(20),
-
             decoration: BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
-
               children: [
-
                 Text(
                   usuario.nome + " " + usuario.sobrenome,
                   style: TextStyle(
@@ -124,7 +115,6 @@ class _CrachaVirtualPageState extends State<CrachaVirtualPage> {
                     color: Colors.white,
                   ),
                 ),
-
                 SizedBox(height: 15,),
                 Text(
                   usuario.email,
@@ -137,11 +127,8 @@ class _CrachaVirtualPageState extends State<CrachaVirtualPage> {
               ],
             ),
           ),
-
         ],
       ),
     );
-
   }
-
 }

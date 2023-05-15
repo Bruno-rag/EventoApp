@@ -5,7 +5,7 @@ import 'package:uesb_eventos/src/pages/widget/butaoEnviaDadosHomologado.widget.d
 import '../controllers/auth.service.dart';
 
 class DescricaoPage extends StatefulWidget {
-  final Atividade? evento;
+  final Evento? evento;
   const DescricaoPage({
     Key? key, this.evento,
   }) : super(key: key);
@@ -41,7 +41,6 @@ class _DescricaoPageState extends State<DescricaoPage> {
   @override
   Widget build(BuildContext context) {
     auth = Provider.of<AuthService>(context);
-
     return Scaffold(
       appBar: AppBar(
 
@@ -113,8 +112,13 @@ class _DescricaoPageState extends State<DescricaoPage> {
             SizedBox(
               height: 8,
             ),
+            auth.visitante == false ?
+              BotaoEnviaDadosHomologadoWidget(
+                  idEvento: widget.evento!.idEvento,
+                  collection: "homologados"
+              ): SizedBox(),
 
-            BotaoEnviaDadosHomologadoWidget(idEvento: widget.evento!.idEvento, collection: "homologados"),
+
             // Container(
             //   alignment: Alignment.center,
             //

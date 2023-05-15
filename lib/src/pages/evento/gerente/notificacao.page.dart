@@ -1,21 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/controllers/auth.service.dart';
-import 'package:uesb_eventos/src/pages/appBar.page.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class CriarEventoPage extends StatefulWidget {
-  const CriarEventoPage({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:uesb_eventos/src/pages/appBar.page.dart';
+
+
+
+class NotificacaoPage extends StatefulWidget {
+  const NotificacaoPage({Key? key}) : super(key: key);
 
   @override
-  State<CriarEventoPage> createState() => _CriarEventoPageState();
+  State<NotificacaoPage> createState() => _NotificacaoPageState();
 }
 
-class _CriarEventoPageState extends State<CriarEventoPage> {
-
-  late AuthService auth;
-  late String idOrganizador = auth.usuario!.uid;
+class _NotificacaoPageState extends State<NotificacaoPage> {
 
   final formKey = GlobalKey<FormState>();
   final nomeEvento = TextEditingController() ;
@@ -30,30 +27,8 @@ class _CriarEventoPageState extends State<CriarEventoPage> {
     type: MaskAutoCompletionType.lazy,
   );
 
-  Future criarEvento() async{
-
-    final dataEvento = FirebaseFirestore.instance.collection("eventos").doc();
-
-    final data = {
-      "idEvento": dataEvento.id,
-      "nomeEvento": nomeEvento.text,
-      "inicioEvento": inicioEvento.text,
-      "terminoEvento": terminoEvento.text,
-      "urlAvatar" : "https://media.istockphoto.com/id/1385168396/pt/foto/people-registering-for-the-conference-event.jpg?s=612x612&w=0&k=20&c=UkdhV6KD1JC43SyAKWWh4z4El3HE_wdBjUKdlIZKsFk=",
-      "detalheEvento": detalheEvento.text,
-      "idOrganizador": idOrganizador,
-
-    };
-
-    dataEvento.set(data).
-    onError((e, _) => print("Error writing document: $e"));
-  }
-
   @override
   Widget build(BuildContext context) {
-
-    auth = Provider.of<AuthService>(context);
-
     return Scaffold(
       appBar: AppBar(
 
@@ -70,7 +45,7 @@ class _CriarEventoPageState extends State<CriarEventoPage> {
           children: <Widget>[
             //Logo aqui
             Text(
-              "Cadastrar Evento",
+              "Enviar notificação",
               textAlign: TextAlign.center,
               style: TextStyle(
                 decoration: TextDecoration.none,
@@ -158,8 +133,8 @@ class _CriarEventoPageState extends State<CriarEventoPage> {
                     keyboardType: TextInputType.multiline,
                     maxLines: 4,
                     decoration: InputDecoration(
-                        icon: Icon(Icons.article_outlined),
-                        labelText: "Detalhe do evento",
+
+                        labelText: "Messagem",
                         labelStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -185,14 +160,13 @@ class _CriarEventoPageState extends State<CriarEventoPage> {
                     child: TextButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          criarEvento();
                           Navigator.of(context).pop();
                           Navigator.of(context).push<int>(
                               MaterialPageRoute(builder: (_) => AppBarPage()));
                         }
                       },
                       child: Text(
-                        "Criar eventos",
+                        "Enviar",
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.white,

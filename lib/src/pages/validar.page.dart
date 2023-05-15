@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uesb_eventos/src/pages/appbar.page.dart';
+import 'package:uesb_eventos/src/pages/appbarLegado.page.dart';
 
 class ValidarPage extends StatefulWidget {
   const ValidarPage({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class _ValidarPageState extends State<ValidarPage> {
               child: TextButton(
                 onPressed: (){
                   Navigator.of(context).push<int>(
-                      MaterialPageRoute(builder: (_)=> AppBarPage())
+                      MaterialPageRoute(builder: (_)=> AppBarLegado())
                   );
                 },
                 child: Text(

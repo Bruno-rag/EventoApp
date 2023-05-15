@@ -23,10 +23,9 @@ class Usuario{
     'sobrenome': sobrenome,
     'fone': fone ,
     'urlAvatar': urlAvatar,
-    'data': dataNas,
+    'dataNas': dataNas,
     'email': email,
   };
-
 
   static Usuario lerFireBase(Map<String, dynamic> json) => Usuario(
     idUsuario: json['idUsuario'],

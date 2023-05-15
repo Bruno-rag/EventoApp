@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
-import 'package:uesb_eventos/src/pages/appbar.page.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CriarAtividadePage extends StatefulWidget {
@@ -43,28 +42,10 @@ class _CriarAtividadePageState extends State<CriarAtividadePage> {
       "descricao": detalheEvento.text,
       "data": atividadeData.text,
 
-
     };
-
     dataAtividade.set(data).
     onError((e, _) => print("Error writing document: $e"));
   }
-
-
-  /*Future createUser() async{
-
-    final db = FirebaseFirestore.instance.collection('/eventos').add(json);
-
-    final json = {
-      "id": nomeEvento,
-      'nome': nomeEvento,
-      'preco': nomeEvento,
-      'url': nomeEvento,
-      'descricao': nomeEvento,
-      'quatidade': nomeEvento,
-    };
-    await db.set(json);
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +81,6 @@ class _CriarAtividadePageState extends State<CriarAtividadePage> {
             SizedBox(
               height: 40,
             ),
-            /*Text("E-mail",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                decoration: TextDecoration.none,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),*/
             Form(
               key: formKey,
               child: Column(
@@ -187,7 +160,6 @@ class _CriarAtividadePageState extends State<CriarAtividadePage> {
                         if (formKey.currentState!.validate()) {
                           criarAtividade();
                           Navigator.of(context).pop();
-
                         }
 
                       },

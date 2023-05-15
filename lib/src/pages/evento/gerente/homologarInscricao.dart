@@ -95,16 +95,11 @@ class _HomologarInscricaoState extends State<HomologarInscricao> {
                   },
                 )
             ),
-
-
-
           ],
         ),
       ),
     );
   }
-
-
 
   Widget buildUser(Usuario usuario) {
     return Card(
@@ -169,7 +164,6 @@ class _HomologarInscricaoState extends State<HomologarInscricao> {
             ],
           ),
         ),
-
       ),
     );
   }

@@ -56,7 +56,7 @@ class _MudarSenhaState extends State<MudarSenha> {
                 ),
                 validator: (value){
                   if(value!.isEmpty){
-                    return "Informe nome";
+                    return "Informe senha";
                   }
                   return null;
                 },
@@ -77,7 +77,7 @@ class _MudarSenhaState extends State<MudarSenha> {
                 ),
                 validator: (value){
                   if(value!.isEmpty){
-                    return "Informe O sobrenome";
+                    return "Informe senha nova";
                   }
                   return null;
                 },

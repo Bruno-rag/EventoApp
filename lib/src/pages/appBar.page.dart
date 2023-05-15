@@ -77,7 +77,22 @@ class _AppBarPageState extends State<AppBarPage> {
                   ),
                 ),
               ),
-
+              ListTile(
+                leading: Icon(
+                    Icons.add,
+                    color: Colors.black54
+                ),
+                title: const Text('Criar um evento'),
+                trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push<int>(
+                      MaterialPageRoute(builder: (_) => CriarEventoPage()));
+                },
+              ),
               ListTile(
                 leading: Icon(
                     Icons.perm_identity,
@@ -129,30 +144,31 @@ class _AppBarPageState extends State<AppBarPage> {
                       MaterialPageRoute(builder: (_) => EventosParticipei()));
                 },
               ),
+              ListTile(
+                leading: Icon(
+                    Icons.subtitles_rounded,
+                    color: Colors.black54
+                ),
+                title: const Text('Validar certificado'),
+                trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push<int>(
+                      MaterialPageRoute(builder: (_) => ValidarPage()));
+                },
+              ),
             ],
           ),
         ),
         appBar: AppBar(
 
-          bottom: TabBar(
-            indicatorColor: Colors.white,
-            indicatorWeight: 4,
-            tabs: [
-              Tab( text : "home"),
-              Tab( text : "Eventos"),
-              Tab( text : "Validar"),
-            ],
-          ),
           elevation: 20,
           titleSpacing: 20,
         ),
-        body: TabBarView(
-          children: [
-            HomePage(),
-            CriarEventoPage(),
-            ValidarPage(),
-          ],
-        ),
+        body: HomePage(),
       ),
     );
   }

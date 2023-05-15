@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/pages/appbar.page.dart';
+import 'package:uesb_eventos/src/pages/appbarLegado.page.dart';
 import 'package:uesb_eventos/src/pages/acessoApp/login.page.dart';
 import '../controllers/auth.service.dart';
+import 'appBar.page.dart';
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uesb_eventos/src/pages/appbar.page.dart';
+import 'package:uesb_eventos/src/pages/appbarLegado.page.dart';
 import 'package:uesb_eventos/src/pages/auth.check.dart';
 import 'package:uesb_eventos/src/pages/acessoApp/login.page.dart';
 import '../../controllers/auth.service.dart';
@@ -47,7 +47,7 @@ class _CadastroPageState extends State<CadastroPage> {
           ),
           children: <Widget>[
             //Logo aqui
-            Text("Cadastro",
+            Text("Cadastro 02",
               textAlign: TextAlign.center,
               style: TextStyle(
                 decoration: TextDecoration.none,

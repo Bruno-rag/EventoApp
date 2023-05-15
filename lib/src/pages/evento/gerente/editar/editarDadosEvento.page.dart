@@ -12,7 +12,7 @@ import 'mudarDataEvento.page.dart';
 import 'mudarNomeEvento.page.dart';
 
 class EditarDadosEventosPage extends StatefulWidget {
-  final Atividade? evento;
+  final Evento? evento;
   const EditarDadosEventosPage({Key? key, this.evento}) : super(key: key);
 
   @override

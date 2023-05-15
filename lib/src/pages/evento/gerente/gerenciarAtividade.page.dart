@@ -4,10 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:uesb_eventos/src/controllers/auth.service.dart';
 import 'package:uesb_eventos/src/controllers/providerAtividade.controller.dart';
 import 'package:uesb_eventos/src/pages/evento/gerente/criarAtividade.page.dart';
-
 import '../../../models/atividade.model.dart';
-
-
 
 class GerenciarAtividadePage extends StatefulWidget {
   final String idEvento;
@@ -170,8 +167,6 @@ class _GerenciarAtividadePageState extends State<GerenciarAtividadePage> {
       ),
     );
   }
-
-
 
   Widget buildUser(Atividade atividade) {
     return Card(
